@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="content-language" content="en-EN" />
+    <meta
+      name="viewport"
+      content="minimal-ui, width=device-width, initial-scale=1"
+    />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <link rel="icon" type="image/png" href="favicon.png" />
+    <title>AptHub</title>
+    <meta name="description" content="AptHub" />
+    <script>
+      function iOS() {
+        return (
+          [
+            "iPad Simulator",
+            "iPhone Simulator",
+            "iPod Simulator",
+            "iPad",
+            "iPhone",
+            "iPod",
+          ].includes(navigator.platform) ||
+          // iPad on iOS 13 detection
+          (navigator.userAgent.includes("Mac") && "ontouchend" in document)
+        );
+      }
+      function forwardWithProps() {
+        const queryString = window.location.search;
+        const redirectUrl = iOS()
+          ? `apthub://callback${queryString}`
+          : `http://dev.admin.apthub.com${queryString}`;
+        window.location.href = redirectUrl;
+      }
+    </script>
+    <style>
+      body {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: sans-serif;
+        flex-direction: column;
+        margin-top: 100px;
+      }
+      @media (prefers-color-scheme: light) {
+        body {
+          background-color: white;
+          color: black;
+        }
+      }
+      @media (prefers-color-scheme: dark) {
+        body {
+          background-color: #282c34;
+          color: white;
+        }
+      }
+    </style>
+  </head>
+  <body onload="forwardWithProps()">
+    <img src="apthub-mark.svg" alt="AptHub Logo" />
+    <h2>Taking you back to Apthub...</h2>
+  </body>
+</html>
