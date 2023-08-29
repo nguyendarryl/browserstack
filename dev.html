@@ -32,7 +32,7 @@
 
         const redirectUrl = iOS()
           ? `apthub://callback${queryString}`
-          : `http://${env}.admin.apthub.com${queryString}`;
+          : `https://${env}.admin.apthub.com${queryString}`;
         window.location.href = redirectUrl;
       }
     </script>
